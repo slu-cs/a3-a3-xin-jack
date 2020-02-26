@@ -37,7 +37,7 @@
       const inputs = form.find('input'); // JQuery object represent all inputs
       for (let input of inputs) {
         input = $(input); // Turn into a JQuery object
-        const li = $(`<li>${input.val()}</li>`); // New list item
+        const li = $(`<li>${input.val()}<button type='submit'>+</button> <button type='submit'>-</button></li>`); // New list item
         list.append(li);
         input.val(''); // Empty out the box
       }
@@ -46,7 +46,7 @@
       const p = $(`<p>Options </p>`);
 
       // Add to the page
-      
+
       $('#voting').append(list);
     });
     </script>
