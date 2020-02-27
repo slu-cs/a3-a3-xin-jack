@@ -50,7 +50,7 @@
       for (let input of inputs) {
         input = $(input); // Turn into a JQuery object
         const li = $(`<li>${input.val()}<button type='submit'>-</button>  <button type='submit'>+</button>  <button type='submit'>Remove</button></li> `); // New list item
-
+        list.append(li);
         input.val('');
       }
 
