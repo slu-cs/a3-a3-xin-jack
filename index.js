@@ -14,7 +14,7 @@ $('form').on('submit', function(event) {
   const tr = $(`<tr class='item${counter}'>
                   <td>${input.val()}</td>
                   <td>0</td>
-                </tr>`);
+                </tr>`); // add row to table
 
   $('ul').append(li); // Add to the page
   $('table').append(tr);
