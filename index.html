@@ -20,48 +20,21 @@
             </div>
             <div>
               <p>Options</p>
-              <form id='voting'>
-                <ul></ul>
-              </form>
+              <ul></ul>
             </div>
           </div>
           <div class='col'>
             <table border=1>
-              <tr><td><h5>Option</h5></td><td><h5>Votes</h5></td></tr>
+              <tr>
+                <td><h5>Option</h5></td>
+                <td><h5>Votes</h5></td>
+              </tr>
             </table>
           </div>
         </div>
       </div>
     </main>
     <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script>
-    let counter = 0;
-
-    // Respond to submit events
-    $('form').on('submit', function(event) {
-      const form = $(this); // JQuery object representing the form
-      event.preventDefault(); // Don't really submit the form
-
-      // Create a new list
-      const list = $('<ul></ul>');
-
-      // Translate each input value into a list item
-      const inputs = form.find('input'); // JQuery object represent all inputs
-      for (let input of inputs) {
-        input = $(input); // Turn into a JQuery object
-        const li = $(`<li>${input.val()}<button type='submit'>-</button>  <button type='submit'>+</button>  <button type='submit'>Remove</button></li> `); // New list item
-        list.append(li);
-        input.val('');
-      }
-
-      counter++;
-      const p = $(`<p>Options </p>`);
-
-      // Add to the page
-
-      $('#voting').append(list);
-
-    });
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
