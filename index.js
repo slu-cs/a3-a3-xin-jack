@@ -21,9 +21,9 @@ $('form').on('submit', function(event) {
 
   $('ul').on('click', '#remove', function(event) {
          const cl = $(this).closest('li').attr('class');
-         console.log(cl);
-         //$(this).closest('li').remove();
-         $('table').closest('tr').remove();
+         
+         $(this).closest('li').remove();
+         $('table').find(`.${cl}`).remove();
        });
 
 
