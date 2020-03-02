@@ -20,7 +20,9 @@ $('form').on('submit', function(event) {
 
 
   $('ul').on('click', '#remove', function(event) {
-         $(this).closest('li').remove();
+         const cl = $(this).closest('li').attr('class');
+         console.log(cl);
+         //$(this).closest('li').remove();
          $('table').closest('tr').remove();
        });
 
