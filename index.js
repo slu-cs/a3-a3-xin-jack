@@ -31,8 +31,22 @@ $('form').on('submit', function(event) {
     const cl = li.attr('class'); // get item number
     const tr = $('table').find(`.${cl}`); // find corresponding row
     const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
+    tr.find('td')[1].textContent=val+1
   });
 
+  $('ul').on('click', '#minus', function(event){
+    event.preventDefault();
+    const li = $(this).closest('li'); // find event listener
+    const cl = li.attr('class'); // get item number
+    const tr = $('table').find(`.${cl}`); // find corresponding row
+    const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
+    if(val-1>=0){
+      tr.find('td')[1].textContent=val-1
+    }
+
+
+
+  });
 
   $('ul').append(li); // Add to the page
   $('table').append(tr);
