@@ -17,41 +17,40 @@ $('form').on('submit', function(event) {
                   <td>0</td>
                 </tr>`); // add row to table
 
-
-  $('ul').on('click', '#remove', function(event) {
-         event.preventDefault();
-         const cl = $(this).closest('li').attr('class'); // get item number
-         $(this).closest('li').remove(); // remove item from list
-         $('table').find(`.${cl}`).remove(); // remove row from table
-       });
-
-  $('ul').on('click', '#plus', function(event){
-    event.preventDefault();
-    const li = $(this).closest('li'); // find event listener
-    const cl = li.attr('class'); // get item number
-    const tr = $('table').find(`.${cl}`); // find corresponding row
-    const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
-    tr.find('td')[1].textContent=val+1
-  });
-
-  $('ul').on('click', '#minus', function(event){
-    event.preventDefault();
-    const li = $(this).closest('li'); // find event listener
-    const cl = li.attr('class'); // get item number
-    const tr = $('table').find(`.${cl}`); // find corresponding row
-    const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
-    if(val-1>=0){
-      tr.find('td')[1].textContent=val-1
-    }
-
-
-
-  });
-
   $('ul').append(li); // Add to the page
   $('table').append(tr);
 
   input.val(''); // reset text
   counter++; // increment id counter
+
+});
+
+$('ul').on('click', '#remove', function(event) {
+       event.preventDefault();
+       const cl = $(this).closest('li').attr('class'); // get item number
+       $(this).closest('li').remove(); // remove item from list
+       $('table').find(`.${cl}`).remove(); // remove row from table
+     });
+
+$('ul').on('click', '#plus', function(event){
+  event.preventDefault();
+  const li = $(this).closest('li'); // find event listener
+  const cl = li.attr('class'); // get item number
+  const tr = $('table').find(`.${cl}`); // find corresponding row
+  const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
+  tr.find('td')[1].textContent=val+1
+});
+
+$('ul').on('click', '#minus', function(event){
+  event.preventDefault();
+  const li = $(this).closest('li'); // find event listener
+  const cl = li.attr('class'); // get item number
+  const tr = $('table').find(`.${cl}`); // find corresponding row
+  const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
+  if(val-1>=0){
+    tr.find('td')[1].textContent=val-1
+  }
+
+
 
 });
