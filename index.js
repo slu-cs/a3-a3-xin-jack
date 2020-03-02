@@ -25,6 +25,7 @@ $('form').on('submit', function(event) {
   };
 });
 
+// remove items from list and table
 $('ul').on('click', '#remove', function(event) {
        event.preventDefault();
        const cl = $(this).closest('li').attr('class'); // get item number
@@ -32,6 +33,7 @@ $('ul').on('click', '#remove', function(event) {
        $('table').find(`.${cl}`).remove(); // remove row from table
      });
 
+// increase vote count
 $('ul').on('click', '#plus', function(event){
   event.preventDefault();
   const li = $(this).closest('li'); // find event listener
@@ -41,6 +43,7 @@ $('ul').on('click', '#plus', function(event){
   tr.find('td')[1].textContent=val+1; // increment
 });
 
+// decrase vote counts
 $('ul').on('click', '#minus', function(event){
   event.preventDefault();
   const li = $(this).closest('li'); // find event listener
