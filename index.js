@@ -41,6 +41,7 @@ $('ul').on('click', '#plus', function(event){
   const tr = $('table').find(`.${cl}`); // find corresponding row
   const val = getVal(tr); // get vote number from table
   tr.find('td')[1].textContent=val+1; // increment
+  sortTable();
 });
 
 // decrease vote count
@@ -53,9 +54,25 @@ $('ul').on('click', '#minus', function(event){
   if(val-1>=0){ // check for non-negativity
     tr.find('td')[1].textContent=val-1; // decrement
   };
+  sortTable();
 });
 
 // function to get vote count out of table
 const getVal = function(tr){
   return parseInt(tr.find('td')[1].textContent);
+};
+
+// sort results list upon polling change
+const sortTable = function(){
+  let table = $('table');
+  const trs = table.find('tr').slice(1); // take header off, it doesn't play nice w/ sorting
+  trs.sort((a, b) => getVal($(b)) - getVal($(a))); // sort by votes
+  table.empty(); // empty table for sorted repopulation
+  table.append($(`<tr>
+                   <td><h5>Option</h5></td>
+                   <td><h5>Votes</h5></td>
+                </tr>`)); // put header back on
+  for (const tr of trs){
+    table.append(tr);
+  }; // repopulate table
 };
