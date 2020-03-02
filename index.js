@@ -50,7 +50,4 @@ $('ul').on('click', '#minus', function(event){
   if(val-1>=0){ // check for non-negativity
     tr.find('td')[1].textContent=val-1 // decrement
   };
-
-
-
 });
