@@ -38,7 +38,7 @@ $('ul').on('click', '#plus', function(event){
   const cl = li.attr('class'); // get item number
   const tr = $('table').find(`.${cl}`); // find corresponding row
   const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
-  tr.find('td')[1].textContent=val+1
+  tr.find('td')[1].textContent=val+1; // increment
 });
 
 $('ul').on('click', '#minus', function(event){
@@ -47,9 +47,9 @@ $('ul').on('click', '#minus', function(event){
   const cl = li.attr('class'); // get item number
   const tr = $('table').find(`.${cl}`); // find corresponding row
   const val = parseInt(tr.find('td')[1].textContent); // get vote number from table
-  if(val-1>=0){
-    tr.find('td')[1].textContent=val-1
-  }
+  if(val-1>=0){ // check for non-negativity
+    tr.find('td')[1].textContent=val-1 // decrement
+  };
 
 
 
