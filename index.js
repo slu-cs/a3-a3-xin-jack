@@ -1,23 +1,35 @@
 let counter = 0; // counter for identifying options
+$('#questions').on('submit', function(event) {
+        const form =$(this);
+        event.preventDefault();
+
+        // Grab the text and empty the box
+        const input =form.find('#add_question');
+        if(input.val()!==''){
+          const li = $(`<li>${input.val()}</li>`);
+          $('#aquestion').append(li); // Add to the page
+          input.val('');
+        }
+
+});
 
 // Respond to submit events
-$('form').on('submit', function(event) {
-
+$('#options').on('submit', function(event) {
   const form = $(this); // JQuery object representing the form
   event.preventDefault(); // Don't really submit the form
-
-  const input = $('input'); // Turn input into a JQuery object
+  const input=form.find('#add_option');
+  //const input = $('input'); // Turn input into a JQuery object
   if (input.val() !== ''){ // check if input is blank
     const li = $(`<li class='item${counter}'>${input.val()}</li>`); // create li w/ text
-    li.append($(`<button id="minus">-</button>`));
-    li.append($(`<button id="plus">+</button>`));
+    li.append($(`<button id="minus">cancel a vote</button>`));
+    li.append($(`<button id="plus">add a vote</button>`));
     li.append($(`<button id="remove">Remove</button>`)); // add buttons
     const tr = $(`<tr class='item${counter}'>
                     <td>${input.val()}</td>
                     <td>0</td>
                   </tr>`); // add row to table
 
-    $('ul').append(li); // Add to the page
+    $('#aoption').append(li); // Add to the page
     $('table').append(tr);
 
     input.val(''); // reset text
