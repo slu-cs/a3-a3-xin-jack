@@ -6,9 +6,9 @@
     <title>title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
-  <body>
+  <body class='bg-light'>
     <main>
-      <div class='container-fluid mb-5 bg-light'>
+      <div class='container-fluid mb-5'>
         <div class='row'>
           <div class='col'>
             <div>
@@ -18,12 +18,10 @@
                 <button type='submit' id='submit_question'>Done</button>
               </form>
             </div>
-            <div>
+            <div class='p-5'>
               <p>Question</p>
               <ul id='aquestion'></ul>
             </div>
-          </div>
-          <div class='col'>
             <div>
               <form id='options'>
                 <label for='add_option'>Add an option</label>
@@ -38,8 +36,10 @@
             </div>
           </div>
           <div class='col'>
-            <table class='table' border=1>
-              <thead>
+          </div>
+          <div class='col'>
+            <table class='table table-striped table-bordered table-hover' border=1>
+              <thead class='thead-light'>
                 <tr>
                   <td><h5>Option</h5></td>
                   <td><h5>Votes</h5></td>
