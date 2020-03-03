@@ -10,8 +10,6 @@ $('#questions').on('submit', function(event) {
           const q = $(`<h2>${input.val()}</h2>`);
           $('#aquestion').append(q); // Add to the page
           // TODO: decide which of the following to do:
-          input.val('');
-          $('#submit_question').prop('disabled',true); // disbale question textbox
           form.remove(); // get rid of question text box
         }
 });
