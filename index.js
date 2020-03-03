@@ -20,7 +20,7 @@ $('#questions').on('submit', function(event) {
 $('#options').on('submit', function(event) {
   const form = $(this); // JQuery object representing the form
   event.preventDefault(); // Don't really submit the form
-  const input=form.find('#add_option');
+  const input=form.find('.add_option');
   if (input.val() !== ''){ // check if input is blank
     const li = $(`<li class='item${counter} list-group-item'><div class='float-left'>${input.val()}</div></li>`); // create li w/ text
     const div = $(`<div class='float-right'></div>`)
@@ -39,13 +39,14 @@ $('#options').on('submit', function(event) {
     input.val(''); // reset text
     counter++; // increment id counter
   };
-  $('#submit_option').click(function(){
-    $(this).attr("disabled","disabled");
-    $('#add_option').attr("disabled","disabled");
-  });
-
-
 });
+
+$('#submit_option').click(function(){
+  $(this).attr("disabled","disabled");
+  $('.add_option').attr("disabled","disabled");
+  $('.add_option').val('');
+});
+
 
 // remove items from list and table
 $('ul').on('click', '#remove', function(event) {
