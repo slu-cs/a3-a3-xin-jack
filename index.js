@@ -3,6 +3,7 @@ $('#questions').on('submit', function(event) {
         const form =$(this);
         event.preventDefault();
 
+
         // Grab the text and empty the box
         const input =form.find('#add_question');
         if(input.val()!==''){
@@ -10,6 +11,8 @@ $('#questions').on('submit', function(event) {
           $('#aquestion').append(li); // Add to the page
           input.val('');
         }
+        $('#submit_question').prop('disabled',true);
+
 
 });
 
@@ -35,6 +38,12 @@ $('#options').on('submit', function(event) {
     input.val(''); // reset text
     counter++; // increment id counter
   };
+  $('#submit_option').click(function(){
+    $(this).attr("disabled","disabled");
+    $('#add_option').attr("disabled","disabled");
+  });
+
+
 });
 
 // remove items from list and table
