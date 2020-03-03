@@ -21,7 +21,6 @@ $('#options').on('submit', function(event) {
   const form = $(this); // JQuery object representing the form
   event.preventDefault(); // Don't really submit the form
   const input=form.find('#add_option');
-  //const input = $('input'); // Turn input into a JQuery object
   if (input.val() !== ''){ // check if input is blank
     const li = $(`<li class='item${counter}'>${input.val()}</li>`); // create li w/ text
     li.append($(`<button id="minus">cancel a vote</button>`));
@@ -86,13 +85,9 @@ const getVal = function(tr){
 // sort results list upon polling change
 const sortTable = function(){
   let table = $('table tbody');
-  const trs = table.find('tr'); // take header off, it doesn't play nice w/ sorting
+  const trs = table.find('tr'); // get all rows of table
   trs.sort((a, b) => getVal($(b)) - getVal($(a))); // sort by votes
   table.empty(); // empty table for sorted repopulation
-  /*table.append($(`<tr>
-                   <td><h5>Option</h5></td>
-                   <td><h5>Votes</h5></td>
-                </tr>`)); // put header back on */
   for (const tr of trs){
     table.append(tr);
   }; // repopulate table
