@@ -1,19 +1,19 @@
 let counter = 0; // counter for identifying options
+
 $('#questions').on('submit', function(event) {
         const form =$(this);
         event.preventDefault();
 
-
         // Grab the text and empty the box
-        const input =form.find('#add_question');
+        const input = form.find('#add_question');
         if(input.val()!==''){
-          const li = $(`<li>${input.val()}</li>`);
-          $('#aquestion').append(li); // Add to the page
+          const q = $(`<h2>${input.val()}</h2>`);
+          $('#aquestion').append(q); // Add to the page
+          // TODO: decide which of the following to do:
           input.val('');
+          $('#submit_question').prop('disabled',true); // disbale question textbox
+          form.remove(); // get rid of question text box
         }
-        $('#submit_question').prop('disabled',true);
-
-
 });
 
 // Respond to submit events
@@ -22,10 +22,12 @@ $('#options').on('submit', function(event) {
   event.preventDefault(); // Don't really submit the form
   const input=form.find('#add_option');
   if (input.val() !== ''){ // check if input is blank
-    const li = $(`<li class='item${counter} list-group-item'>${input.val()}</li>`); // create li w/ text
-    li.append($(`<button id="minus">cancel a vote</button>`));
-    li.append($(`<button id="plus">add a vote</button>`));
-    li.append($(`<button id="remove">Remove</button>`)); // add buttons
+    const li = $(`<li class='item${counter} list-group-item'><div class='float-left'>${input.val()}</div></li>`); // create li w/ text
+    const div = $(`<div class='float-right'></div>`)
+    div.append($(`<button id="minus">cancel a vote</button>`));
+    div.append($(`<button id="plus">add a vote</button>`));
+    div.append($(`<button id="remove">Remove</button>`)); // add buttons
+    li.append(div);
     const tr = $(`<tr class='item${counter}'>
                     <td>${input.val()}</td>
                     <td>0</td>
@@ -48,7 +50,7 @@ $('#options').on('submit', function(event) {
 // remove items from list and table
 $('ul').on('click', '#remove', function(event) {
        event.preventDefault();
-       const cl = $(this).closest('li').attr('class'); // get item number
+       const cl = $(this).closest('li').attr('class').split(' ')[0]; // get item number
        $(this).closest('li').remove(); // remove item from list
        $('table').find(`.${cl}`).remove(); // remove row from table
 });
@@ -57,7 +59,7 @@ $('ul').on('click', '#remove', function(event) {
 $('ul').on('click', '#plus', function(event){
   event.preventDefault();
   const li = $(this).closest('li'); // find event listener
-  const cl = li.attr('class'); // get item number
+  const cl = li.attr('class').split(' ')[0]; // get item number
   const tr = $('table').find(`.${cl}`); // find corresponding row
   const val = getVal(tr); // get vote number from table
   tr.find('td')[1].textContent=val+1; // increment
@@ -68,7 +70,7 @@ $('ul').on('click', '#plus', function(event){
 $('ul').on('click', '#minus', function(event){
   event.preventDefault();
   const li = $(this).closest('li'); // find event listener
-  const cl = li.attr('class'); // get item number
+  const cl = li.attr('class').split(' ')[0]; // get item number
   const tr = $('table').find(`.${cl}`); // find corresponding row
   const val = getVal(tr); // get vote number from table
   if(val-1>=0){ // check for non-negativity
