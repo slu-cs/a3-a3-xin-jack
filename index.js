@@ -22,7 +22,7 @@ $('#options').on('submit', function(event) {
   event.preventDefault(); // Don't really submit the form
   const input=form.find('#add_option');
   if (input.val() !== ''){ // check if input is blank
-    const li = $(`<li class='item${counter}'>${input.val()}</li>`); // create li w/ text
+    const li = $(`<li class='item${counter} list-group-item'>${input.val()}</li>`); // create li w/ text
     li.append($(`<button id="minus">cancel a vote</button>`));
     li.append($(`<button id="plus">add a vote</button>`));
     li.append($(`<button id="remove">Remove</button>`)); // add buttons
