@@ -9,7 +9,6 @@ $('#questions').on('submit', function(event) {
         if(input.val()!==''){
           const q = $(`<h2>${input.val()}</h2>`);
           $('#aquestion').append(q); // Add to the page
-          // TODO: decide which of the following to do:
           form.remove(); // get rid of question text box
 
         }
@@ -20,7 +19,7 @@ $('#options').on('submit', function(event) {
   const form = $(this); // JQuery object representing the form
   event.preventDefault(); // Don't really submit the form
   const input=form.find('.add_option');
-  if (input.val() !== ''){ // check if input is blank
+  if (input.val() !== '' && notDup(input.val())){ // check if input is blank or a duplicate
     const li = $(`<li class='item${counter} list-group-item'><div class='float-left'>${input.val()}</div></li>`); // create li w/ text
     const div = $(`<div class='float-right'></div>`)
     div.append($(`<button id="minus" class="btn btn-info">cancel a vote</button>`));
@@ -107,4 +106,15 @@ const sortTable = function(){
   for (const tr of trs){
     table.append(tr);
   }; // repopulate table
+};
+
+const notDup = function(val){
+  let table = $('table tbody');
+  const trs = table.find('tr'); // get all rows of table
+  for (const tr of trs){
+    if (val === $(tr).find('td')[0].textContent){
+      return false;
+    };
+  };
+  return true;
 };
