@@ -43,6 +43,7 @@ $('#options').on('submit', function(event) {
 
 //when click Done for options
 $('#submit_option').click(function(){
+  //unable the done button for option when empty
   if(list_counter!=0){
     $(this).attr("disabled","disabled");  //disable the button when done
     $('.add_option').attr("disabled","disabled");
