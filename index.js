@@ -1,11 +1,14 @@
 let counter = 0; // counter for identifying options
 
+//  add question
 $('#questions').on('submit', function(event) {
         const form =$(this);
         event.preventDefault();
-
         // Grab the text and empty the box
         const input = form.find('#add_question');
+
+        document.title = input.val();
+
         if(input.val()!==''){
           const q = $(`<h2>${input.val()}</h2>`);
           $('#aquestion').append(q); // Add to the page
