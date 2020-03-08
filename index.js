@@ -11,9 +11,10 @@ $('#questions').on('submit', function(event) {
           $('#aquestion').append(q); // Add to the page
           // TODO: decide which of the following to do:
           form.remove(); // get rid of question text box
+
         }
 });
-
+let list_counter=0;//this variable is used to count the number of item in the list
 // Respond to submit events
 $('#options').on('submit', function(event) {
   const form = $(this); // JQuery object representing the form
@@ -26,6 +27,7 @@ $('#options').on('submit', function(event) {
     div.append($(`<button id="plus" class="btn btn-info m-2">add a vote</button>`));
     div.append($(`<button id="remove" class="btn btn-info">Remove</button>`)); // add buttons
     li.append(div);
+    list_counter=list_counter+1;
     const tr = $(`<tr class='item${counter}'>
                     <td>${input.val()}</td>
                     <td>0</td>
@@ -39,10 +41,22 @@ $('#options').on('submit', function(event) {
   };
 });
 
+//when click Done for options
 $('#submit_option').click(function(){
-  $(this).attr("disabled","disabled");
-  $('.add_option').attr("disabled","disabled");
-  $('.add_option').val('');
+  //unable the done button for option when empty
+  if(list_counter!=0){
+    $(this).attr("disabled","disabled");  //disable the button when done
+    $('.add_option').attr("disabled","disabled");
+    $('.add_option').val('');
+    //loop through to remove all the remove buttons
+    while(list_counter>0){
+      $('#remove').remove();
+      list_counter=list_counter-1;
+    }
+    //get rid of the add option form
+    this.closest('form').remove();
+  }
+
 });
 
 
@@ -52,6 +66,7 @@ $('ul').on('click', '#remove', function(event) {
        const cl = $(this).closest('li').attr('class').split(' ')[0]; // get item number
        $(this).closest('li').remove(); // remove item from list
        $('table').find(`.${cl}`).remove(); // remove row from table
+       list_counter=list_counter-1;
 });
 
 // increase vote count
