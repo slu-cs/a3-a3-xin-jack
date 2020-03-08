@@ -11,9 +11,10 @@ $('#questions').on('submit', function(event) {
           $('#aquestion').append(q); // Add to the page
           // TODO: decide which of the following to do:
           form.remove(); // get rid of question text box
+
         }
 });
-
+let list_counter=0;
 // Respond to submit events
 $('#options').on('submit', function(event) {
   const form = $(this); // JQuery object representing the form
@@ -26,6 +27,7 @@ $('#options').on('submit', function(event) {
     div.append($(`<button id="plus">add a vote</button>`));
     div.append($(`<button id="remove">Remove</button>`)); // add buttons
     li.append(div);
+    list_counter=list_counter+1;
     const tr = $(`<tr class='item${counter}'>
                     <td>${input.val()}</td>
                     <td>0</td>
@@ -39,10 +41,17 @@ $('#options').on('submit', function(event) {
   };
 });
 
+
 $('#submit_option').click(function(){
-  $(this).attr("disabled","disabled");
-  $('.add_option').attr("disabled","disabled");
-  $('.add_option').val('');
+    $(this).attr("disabled","disabled");
+    $('.add_option').attr("disabled","disabled");
+    $('.add_option').val('');
+    while(list_counter>0){
+      $('#remove').remove();
+      list_counter=list_counter-1;
+    }
+    this.closest('form').remove();
+
 });
 
 
@@ -52,6 +61,7 @@ $('ul').on('click', '#remove', function(event) {
        const cl = $(this).closest('li').attr('class').split(' ')[0]; // get item number
        $(this).closest('li').remove(); // remove item from list
        $('table').find(`.${cl}`).remove(); // remove row from table
+       list_counter=list_counter-1;
 });
 
 // increase vote count
