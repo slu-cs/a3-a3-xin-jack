@@ -22,9 +22,9 @@ $('#options').on('submit', function(event) {
   if (input.val() !== ''){ // check if input is blank
     const li = $(`<li class='item${counter} list-group-item'><div class='float-left'>${input.val()}</div></li>`); // create li w/ text
     const div = $(`<div class='float-right'></div>`)
-    div.append($(`<button id="minus">cancel a vote</button>`));
-    div.append($(`<button id="plus">add a vote</button>`));
-    div.append($(`<button id="remove">Remove</button>`)); // add buttons
+    div.append($(`<button id="minus" class="btn btn-info">cancel a vote</button>`));
+    div.append($(`<button id="plus" class="btn btn-info m-2">add a vote</button>`));
+    div.append($(`<button id="remove" class="btn btn-info">Remove</button>`)); // add buttons
     li.append(div);
     const tr = $(`<tr class='item${counter}'>
                     <td>${input.val()}</td>
