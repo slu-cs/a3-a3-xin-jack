@@ -14,7 +14,7 @@ $('#questions').on('submit', function(event) {
 
         }
 });
-let list_counter=0;
+let list_counter=0;//this variable is used to count the number of item in the list
 // Respond to submit events
 $('#options').on('submit', function(event) {
   const form = $(this); // JQuery object representing the form
@@ -43,14 +43,18 @@ $('#options').on('submit', function(event) {
 
 //when click Done for options
 $('#submit_option').click(function(){
-    $(this).attr("disabled","disabled");
+  if(list_counter!=0){
+    $(this).attr("disabled","disabled");  //disable the button when done
     $('.add_option').attr("disabled","disabled");
     $('.add_option').val('');
+    //loop through to remove all the remove buttons
     while(list_counter>0){
       $('#remove').remove();
       list_counter=list_counter-1;
     }
+    //get rid of the add option form
     this.closest('form').remove();
+  }
 
 });
 
