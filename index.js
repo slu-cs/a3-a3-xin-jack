@@ -41,7 +41,7 @@ $('#options').on('submit', function(event) {
   };
 });
 
-
+//when click Done for options
 $('#submit_option').click(function(){
     $(this).attr("disabled","disabled");
     $('.add_option').attr("disabled","disabled");
